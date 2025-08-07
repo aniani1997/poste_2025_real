@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東海大學超E課程第三期網站</title>
+    <link rel="icon" href="/img/favicon.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        postegrey: 'rgba(64, 64, 64, 1)',
+                        postepurple: 'rgba(158, 166, 255, 1)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'extra': '0.15em',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 0px #FFF100' },
+                            '50%': { boxShadow: '0 0 20px #FFF100' },
+                        }
+                    },
+                    animation: {
+                        glow: 'glow 2s infinite',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .scale-container {
+            transform-origin: top left;
+            width: 1920px;
+            /* 設計稿寬度 */
+        }
+
+        a.group-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, #5968FF, #2332CD);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            border-radius: 1.5rem;
+
+            /* same as rounded-3xl */
+        }
+
+        a.group-btn:hover::before {
+            opacity: 1;
+            box-shadow: inset 0px 0px 4px 0px rgba(255, 255, 255, 1);
+        }
+
+
+        .writing-vertical {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+
+        .writing-vertical-en {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            /* 保持英文水平排列 */
+        }
+
+        .tab-btn.active span {
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid white;
+        }
+
+        .tab-btn.active img {
+            opacity: 1;
+        }
+
+        .course-tab-btn.active,
+        .instructor-tab-btn.active {
+            background-color: rgba(64, 64, 64, 1);
+            box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-white ">
+    <!-- 固定右側垂直功能列 -->
+    <div class="fixed max-[1440px]:hidden right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
+        <!-- 固定欄logo -->
+        <img src="./img/00menu-logo.png" alt="logo" class="object-contain">
+
+        <!-- 四個社群icon -->
+        <div class="flex flex-col items-center gap-y-5">
+            <a href="#"><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain"></a>
+            <a href="https://www.facebook.com/Poste.thu.tw"><img src="./img/00menu-icon-fb.png" alt="fb"
+                    class="object-contain"></a>
+            <a href="https://www.youtube.com/@tisc1548"><img src="./img/00menu-icon-yt.png" alt="yt"
+                    class="object-contain"></a>
+            <a href="#"><img src="./img/00menu-icon-line.png" alt="line" class="object-contain"></a>
+        </div>
+
+        <!-- 白線 -->
+        <div class="w-px h-20 bg-white"></div>
+
+        <!-- 向下按鈕 -->
+        <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="animate-bounce mt-2 object-contain">
+    </div>
+    <div id="scale-wrapper" class="relative w-full bg-[url('./img/bg-all.png')] bg-cover bg-center overflow-hidden">
+        <div class="scale-container">
+            <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
+            <img src="./img/bg-02.png" class="absolute z-10 top-[2160px] left-0" />
+
+            <!-- 雲朵 -->
+            <img src="./img/01bannar-cloud.png" alt="雲雲" class="absolute right-0 object-contain ">
+            <!-- 教堂 -->
+            <img src="./img/01bannar-church.png" alt="教堂" class="absolute z-30 right-0 top-[56px] object-contain ">
+
+
+            <section class="relative">
+                <!-- 左上導覽列 -->
+                <nav
+                    class="px-10 pt-9 top-0 left-0 w-full flex items-center justify-between font-semibold text-[24px] z-50">
+                    <div class="flex items-center">
+                        <img src="./img/00nav-logo.png" alt="Logo" class="object-contain pr-8">
+                        <ul class="flex gap-x-6 tracking-wide z-50">
+                            <li>
+                                <a href="#feature" class="group flex gap-4 px-8 border-r-2">
+                                    <img src="./img/00nav-icon.png" alt=""
+                                        class="border-b-2 border-transparent object-contain">
+                                    <span
+                                        class="border-b-2 border-transparent group-hover:border-white tracking-[0.15em]">辦學特色</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="flex gap-x-6 tracking-wide z-50">
+                            <li>
+                                <a href="#program" class="group flex gap-4 px-8 border-r-2">
+                                    <img src="./img/00nav-icon.png" alt=""
+                                        class="border-b-2 border-transparent object-contain">
+                                    <span
+                                        class="border-b-2 border-transparent group-hover:border-white tracking-[0.15em]">學程介紹</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="flex gap-x-6 tracking-wide z-50">
+                            <li>
+                                <a href="#teachers" class="group flex gap-4 px-8 border-r-2">
+                                    <img src="./img/00nav-icon.png" alt=""
+                                        class="border-b-2 border-transparent object-contain">
+                                    <span
+                                        class="border-b-2 border-transparent group-hover:border-white tracking-[0.15em]">師資介紹</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="flex gap-x-6 tracking-wide z-50">
+                            <li>
+                                <a href="#highlights" class="group flex gap-4 px-8">
+                                    <img src="./img/00nav-icon.png" alt=""
+                                        class="border-b-2 border-transparent object-contain">
+                                    <span
+                                        class="border-b-2 border-transparent group-hover:border-white tracking-[0.15em]">課程亮點</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- 標題與報名區 -->
+                <div class="mt-[302px] ml-[100px] w-[552px] mb-[520px]">
+                    <img src="./img/01bannar-title.png" alt="標題文字" class="object-contain ml-2 pb-8 border-b">
+                    <!-- 容器放這裡 -->
+                    <div id="char-line"
+                        class="grid grid-flow-col w-full text-[26px] leading-none text-center mt-6 mb-14">
+                    </div>
+
+                    <a href="#" class="relative inline-flex items-center gap-x-2 ml-2 px-7 py-6 rounded-3xl font-semibold text-[24px] text-white
+                   bg-postegrey group-btn overflow-hidden shadow-[3px_4px_11.6px_0px_rgba(255,255,255,0.34)]
+                   transition-all duration-500 ease-in-out">
+                        <span class="relative z-10">課 程 報 名</span>
+                        <img src="./img/00button-arrow-right.png" alt="右箭頭" class="object-contain z-10">
+                    </a>
+
+                </div>
+
+                <!-- 辦學特色 -->
+                <section id="feature" class="flex  items-center w-full mb-[300px] pl-[72px] z-20">
+                    <!-- 左側：標題 -->
+                    <div class="flex flex-col items-center font-bold z-20 gap-y-6 pt-8 mr-[132px]">
+                        <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4 ">
+                        <div>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">辦</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">學</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">特</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">色</h2>
+                        </div>
+                        <p class="text-[36px] writing-vertical-en whitespace-nowrap ml-2">
+                            <span>-</span>
+                        </p>
+                        <p class="text-[28px] writing-vertical-en whitespace-nowrap tracking-wider">
+                            <span>Unique Educational Features</span>
+                        </p>
+                    </div>
+
+                    <!-- 中間：切換按鈕 -->
+                    <div class="flex flex-col gap-y-11 z-20 mr-[96px]">
+                        <ul class="list-disc text-[30px] font-bold group ">
+                            <li>
+                                <button
+                                    class="tab-btn group active flex items-center gap-x-[72px] transition-all duration-300"
+                                    data-target="tab1">
+                                    <span
+                                        class="ml-2 border-b border-transparent group-hover:border-white group-hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] pb-1">
+                                        國 際 視 野
+                                    </span>
+                                    <img src="img/02secetion-arrow-right.png"
+                                        class="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        alt="箭頭" />
+                                </button>
+                            </li>
+                        </ul>
+                        <ul class="list-disc text-[30px] font-bold">
+                            <li>
+                                <button
+                                    class="tab-btn group  flex items-center gap-x-[72px] transition-all duration-300 bg-transparent p-0"
+                                    data-target="tab2">
+                                    <span
+                                        class="ml-2 border-b border-transparent group-hover:border-white group-hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] pb-1">
+                                        校 友 網 絡
+                                    </span>
+                                    <img src="img/02secetion-arrow-right.png"
+                                        class="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        alt="箭頭" />
+                                </button>
+                            </li>
+                        </ul>
+                        <ul class="list-disc text-[30px] font-bold">
+                            <li>
+                                <button class="tab-btn group flex items-center gap-x-9 transition-all duration-300"
+                                    data-target="tab3">
+                                    <span
+                                        class="ml-2 border-b border-transparent group-hover:border-white group-hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] pb-1">
+                                        優 勢 與 認 證
+                                    </span>
+                                    <img src="img/02secetion-arrow-right.png"
+                                        class="object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        alt="箭頭" />
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- 右側：圖片展示區 -->
+                    <div class="z-20 flex justify-center min-w-[1027px]">
+                        <div id="tab1" class="tab-content block">
+                            <img src="./img/02secetion-globel.png" alt="國際視野圖片" class="object-contain">
+                        </div>
+                        <div id="tab2" class="tab-content hidden">
+                            <img src="./img/02secetion-world.png" alt="校友網絡圖片" class="object-contain">
+                        </div>
+                        <div id="tab3" class="tab-content hidden">
+                            <img src="./img/02secetion-medal.png" alt="優勢與認證圖片" class="object-contain">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 學程介紹 -->
+                <section id="program" class="flex center w-full mb-[480px] ml-[72px] z-20">
+                    <!-- 左側：標題 -->
+                    <div class="flex flex-col items-center font-bold z-20 gap-y-6 mt-[100px]">
+                        <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4 ">
+                        <div>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">學</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">程</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">介</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">紹</h2>
+                        </div>
+                        <p class="text-[36px] writing-vertical-en whitespace-nowrap ml-2">
+                            <span>-</span>
+                        </p>
+                        <p class="text-[28px] writing-vertical-en whitespace-nowrap tracking-wider">
+                            <span>Program Introduction</span>
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center z-20 w-full -ml-[136px]">
+                        <!-- 上方：切換按鈕 -->
+                        <div class="flex justify-center gap-[60px]  text-[30px]">
+                            <button
+                                class="course-tab-btn flex items-center justify-center min-w-[276px] py-[15px] gap-4  rounded-xl bg-postepurple shadow 
+                        transition duration-500 ease-out hover:bg-postegrey hover:[box-shadow:0_0_4px_rgba(255,255,255,0.6)] active"
+                                data-course="course1">
+                                <img src="./img/03secetion-icon-01.png" alt="按鈕一icon">
+                                <span>學程定位</span>
+                            </button>
+                            <button
+                                class="course-tab-btn flex items-center justify-center min-w-[276px] py-[15px] gap-4 rounded-xl bg-postepurple shadow 
+                        transition duration-500 ease-out hover:bg-postegrey hover:[box-shadow:0_0_4px_rgba(255,255,255,0.6)] "
+                                data-course="course2">
+                                <img src="./img/03secetion-icon-02.png" alt="按鈕二icon">
+                                <span>核心價值</span>
+                            </button>
+                            <button
+                                class="course-tab-btn flex items-center justify-center min-w-[276px] py-[15px] gap-4 rounded-xl bg-postepurple shadow 
+                        transition duration-500 ease-out hover:bg-postegrey hover:[box-shadow:0_0_4px_rgba(255,255,255,0.6)] "
+                                data-course="course3">
+                                <img src="./img/03secetion-icon-03.png" alt="按鈕三icon">
+                                <span>超E優勢</span>
+                            </button>
+                        </div>
+
+                        <!-- 下方：內容 -->
+                        <div id="course1" class="course-pane">
+                            <img src="./img/03secetion-1-img.png" alt="學程定位介紹圖" class="object-contain mt-[120px]">
+                        </div>
+                        <div id="course2" class="course-pane hidden">
+                            <img src="./img/03secetion-2-img.png" alt="核心價值介紹圖" class="object-contain mt-[142px]">
+                        </div>
+                        <div id="course3" class="course-pane hidden min-w-[1060px] flex flex-col items-center">
+                            <img src="./img/03secetion-3-img.png" alt="三人圖" class="object-contain mt-[52px]">
+                            <img src="./img/03secetion-3-img-2.png" alt="三區" class="object-contain mt-[44px]">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 師資介紹 -->
+                <section id="teachers" class="flex w-full mb-[420px] ml-[72px] gap-x-[112px] z-20 items-center ">
+                    <!-- 左側：標題區 -->
+                    <div class="flex flex-col items-center font-bold gap-y-6">
+                        <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4">
+                        <div>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">師</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">資</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">介</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">紹</h2>
+                        </div>
+                        <p class="text-[36px] writing-vertical-en whitespace-nowrap ml-2">-</p>
+                        <p class="text-[28px] writing-vertical-en whitespace-nowrap tracking-wider">Meet Our Instructors
+                        </p>
+                    </div>
+
+                    <!-- 右側：按鈕區與卡片區 -->
+                    <div class="flex gap-[164px] w-full items-start z-20">
+                        <!-- 按鈕 -->
+                        <div id="instructor-tabs" class="flex flex-col justify-center text-[30px]">
+                            <!-- JavaScript 會動態產生按鈕 -->
+                        </div>
+
+                        <!-- 卡片與標語 -->
+                        <div class="flex flex-col">
+                            <div class="font-bold tracking-[0.15em] text-[30px] text-right mb-[180px]">
+                                打造決策力 × 談判力 × 領導力的頂尖講堂！
+                            </div>
+                            <div id="instructor-cards" class="flex justify-center gap-[60px] mt-0">
+                                <!-- JavaScript 會動態產生卡片 -->
+                            </div>
+                            <li class="list-disc font-[18px] tracking-[0.15em] text-right mt-5">師資陣容以最終課程發布為主</li>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 影片區 -->
+                <section class="relative z-20 mb-[400px] flex flex-col items-center">
+                    <div>
+                        <div class="font-bold tracking-[0.15em] text-[30px] text-left mb-5">
+                            東海超E=實力x轉型x跨域的「戰略加速器」！
+                        </div>
+                        <iframe width="1337" height="652"
+                            src="https://www.youtube.com/embed/OwkrVGZljJg?si=NPwop3mGuo1iqsW6"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <!-- 右圖案 -->
+                    <img src="./img/05secetion-church.png" alt="右教堂"
+                        class="absolute z-20 object-contain right-0 top-1/2">
+                </section>
+
+                <!-- 課程亮點 -->
+                <section id="highlights"
+                    class="relative flex w-full  ml-[72px] gap-x-[120px] z-20 items-center mt-[100px]">
+                    <!-- 左側：標題區 -->
+                    <div class="flex flex-col items-center font-bold gap-y-6">
+                        <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4">
+                        <div>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">課</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">程</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">亮</h2>
+                            <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">點</h2>
+                        </div>
+                        <p class="text-[36px] writing-vertical-en whitespace-nowrap ml-2">-</p>
+                        <p class="text-[28px] writing-vertical-en whitespace-nowrap tracking-wider">Course Highlights
+                        </p>
+                    </div>
+                    <!-- 右側：按鈕區與卡片區 -->
+                    <div class="flex flex-col">
+                        <div class="flex items-center text-[20px] font-semibold gap-3">
+                            <span class="tracking-[0.15em]">請往右滑動</span>
+                            <img src="./img/06section-icon-arrow-right.png" alt="右箭頭">
+                        </div>
+                        <div class="mt-6 overflow-x-auto">
+                            <div id="highlight-cards" class="flex max-w-[1472px] scrollbar-hide gap-[64px]">
+                                <!-- JavaScript 會插入卡片 -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 報名按鈕 -->
+                <div class="mt-[92px] flex justify-center w-full pb-[96px]">
+                    <a href="#" class="relative inline-flex items-center justify-center gap-x-4 ml-2 px-[72px] py-6 rounded-3xl font-semibold text-[24px] text-white
+                   bg-postegrey group-btn overflow-hidden shadow-[3px_4px_11.6px_0px_rgba(255,255,255,0.34)]
+                   transition-all duration-500 ease-in-out z-20">
+                        <span class="relative z-20">課 程 報 名</span>
+                        <img src="./img/00button-arrow-right.png" alt="右箭頭" class="object-contain z-10">
+                    </a>
+                </div>
+            </section>
+            <!-- 左底色塊 -->
+            <!-- 色塊包 footer -->
+            <div class="relative w-full">
+                <img src="./img/bg-03.png" alt="紫色色塊03" class="absolute z-10 w-full bottom-0 left-0">
+
+                <footer class="relative z-20 flex justify-center w-full">
+                    <img src="./img/footer.png" alt="聯絡我們" class="object-contain">
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    //  縮放
+    function updateScale() {
+        const baseWidth = 1920;
+        const scaleContainer = document.querySelector('.scale-container');
+        const wrapper = document.getElementById('scale-wrapper');
+
+        const scaleRatio = window.innerWidth / baseWidth;
+        scaleContainer.style.transform = `scale(${scaleRatio})`;
+        scaleContainer.style.transformOrigin = 'top left';
+
+        // 調整 wrapper 高度，**以視覺縮放後的實際高度為準**
+        const containerHeight = scaleContainer.getBoundingClientRect().height;
+        wrapper.style.height = `${containerHeight}px`;
+    }
+
+    window.addEventListener('load', updateScale);
+    window.addEventListener('resize', updateScale);
+
+
+
+    const text = "厚植人文底蘊/邁向卓越領導";
+    const container = document.getElementById("char-line");
+    const chars = [...text]; // 字數：26（請確認）
+
+    container.classList.add(`grid-cols-${chars.length}`);
+    container.innerHTML = chars.map(char =>
+        `<div>${char}</div>`
+    ).join('');
+
+    // 學程特色按鈕區
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // 清除全部 active 樣式
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.add('hidden'));
+
+            // 加入選中的 active
+            btn.classList.add('active');
+            const target = btn.getAttribute('data-target');
+            document.getElementById(target).classList.remove('hidden');
+        });
+    });
+
+    // 課程特色按鈕區
+    const courseTabs = document.querySelectorAll('.course-tab-btn');
+    const coursePanes = document.querySelectorAll('.course-pane');
+
+    courseTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.course;
+
+            courseTabs.forEach(t => t.classList.remove('active'));
+            coursePanes.forEach(p => p.classList.add('hidden'));
+
+            tab.classList.add('active');
+            document.getElementById(target).classList.remove('hidden');
+        });
+    });
+
+
+    // 師資介紹按鈕區與卡片
+    const instructorData = [
+        {
+            name: "王凱立",
+            image: "./img/04secetion-teacher-kelly.png",
+            edu: "美國猶他州立大學經濟學博士",
+            job: "東海大學財務金融學系教授<br>管理學院代理院長",
+            group: "course1"
+        },
+        {
+            name: "曲建仲",
+            image: "./img/04secetion-teacher-song.png",
+            edu: "台大電機工程博士",
+            job: "政大科管智慧財產所教授<br>知識力科技股份有限公司執行長",
+            group: "course1"
+        },
+        {
+            name: "黃崇興",
+            image: "./img/04secetion-teacher-huang.png",
+            edu: "美國德州大學企業管理博士",
+            job: "長庚大學商管學院教授<br>上海復旦大學EMBA客座教授",
+            group: "course2"
+        },
+        {
+            name: "吳祉芸",
+            image: "./img/04secetion-teacher-anna.png",
+            edu: "國立政治大學企業管理系博士",
+            job: "東海大學企業管理學系副教授<br>兼英文中心教授",
+            group: "course2"
+        },
+        {
+            name: "吳兆田",
+            image: "./img/04secetion-teacher-wu.png",
+            edu: "台灣師範大學公民教育與活動領導教育哲學博士",
+            job: "歷奇國際有限公司創辦人暨執行長<br>商周CEO學院課程引導教練",
+            group: "course3"
+        },
+        {
+            name: "李佳達",
+            image: "./img/04secetion-teacher-lee.png",
+            edu: "美國密涅瓦大學科學決策碩士",
+            job: "科學決策、大數據應用講師、<br>律師、心智圖專業講師",
+            group: "course3"
+        },
+        {
+            name: "王金平",
+            image: "./img/04secetion-teacher-wang.png",
+            edu: "彰化師範大學名譽教育學博士",
+            job: "財團法人生技醫療科技政策研究<br>中心董事長",
+            group: "course4"
+        },
+        {
+            name: "劉必榮",
+            image: "./img/04secetion-teacher-liu.png",
+            edu: "美國維吉尼亞大學國際關係博士",
+            job: "東吳大學政治系教授<br>台北市談判研究發展協會理事長",
+            group: "course4"
+        },
+        {
+            name: "童元方",
+            image: "./img/04secetion-teacher-tong.png",
+            edu: "哈佛大學哲學系博士<br>美國奧立岡大學藝術史碩士、東亞所碩士",
+            job: "東海大學英語中心兼任教授",
+            group: "course5"
+        },
+        {
+            name: "李乾朗",
+            image: "./img/04secetion-teacher-olderlee.png",
+            edu: "中國文化大學建築及都市設計學系學士",
+            job: "財團法人國家文化藝術基金會董事、台藝大古蹟修復系客座教授",
+            group: "course5"
+        },
+        {
+            name: "彭懷真",
+            image: "./img/04secetion-teacher-pong.png",
+            edu: "東海大學社會學博士",
+            job: "東海大學社會工作系副教授",
+            group: "course6"
+        },
+        {
+            name: "黃兆璽",
+            image: "./img/04secetion-teacher-thuhuang.png",
+            edu: "北京大學新聞與傳播學院傳播學<br>文學博士",
+            job: "東海大學公共事務暨校友服務處<br>處長、台灣新媒體科技與教育協<br>會秘書長",
+            group: "course6"
+        },
+    ];
+
+    const courseGroups = ["course1", "course2", "course3", "course4", "course5", "course6"];
+    const tabContainer = document.getElementById("instructor-tabs");
+    const cardContainer = document.getElementById("instructor-cards");
+
+    function createButton(group, label) {
+        const btn = document.createElement("button");
+        btn.className = `instructor-tab-btn flex items-center justify-center w-[276px] py-[15px] mt-[48px] gap-4 rounded-xl bg-postepurple shadow 
+        transition duration-500 ease-out hover:bg-postegrey hover:[box-shadow:0_0_4px_rgba(255,255,255,0.6)] `;
+        btn.dataset.group = group;
+        btn.innerHTML = `<img src="./img/00nav-icon.png" alt="icon"><span>${label}</span>`;
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".instructor-tab-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderCards(group);
+        });
+        return btn;
+    }
+
+    function renderTabs() {
+        const labels = {
+            course1: "企業創新",
+            course2: "組織策略",
+            course3: "博雅六藝",
+            course4: "談判溝通",
+            course5: "人文情懷",
+            course6: "趨勢先行"
+        };
+        courseGroups.forEach(group => {
+            tabContainer.appendChild(createButton(group, labels[group]));
+        });
+    }
+
+    let isFirstRender = true; // 追蹤是否為第一次渲染
+
+    function renderCards(group) {
+        const instructors = instructorData.filter(ins => ins.group === group);
+        cardContainer.innerHTML = ""; // 清空卡片區
+
+        instructors.slice(0, 2).forEach(ins => {
+            const card = document.createElement("div");
+
+            // 加上基礎樣式
+            card.className = "instructor-card bg-[#404040] pl-6 pr-2 py-8 rounded-[1.5vw] text-white w-[448px] h-[472px] shadow-[0px_6px_8.7px_0px_rgba(0,0,0,0.61)]";
+
+            // 如果不是第一次渲染，就加上初始動畫狀態
+            if (!isFirstRender) {
+                card.classList.add("opacity-40", "translate-x-10", "transition", "duration-500", "ease-in");
+            }
+
+            card.innerHTML = `
+            <div class="flex flex-col h-full">
+                <div class="flex flex-col items-center">
+                    <img src="${ins.image}" class="w-[240px] h-[240px] object-cover rounded-full -mt-[120px]">
+                    <h3 class="text-[30px] font-bold mt-4">${ins.name}</h3>
+                    <img src="./img/04secetion-teacher-nameline.png" class="mt-1">
+                </div>
+                <ul class="leading-[190%] tracking-[0.15em] text-[18px] leading-loose pt-5 flex flex-col">
+                    <li class="flex">
+                        ・【學歷】
+                        <span class="flex-1">${ins.edu}</span>
+                    </li>
+                    <li class="flex">
+                        ・【現任】
+                        <span class="flex-1">${ins.job}</span>
+                    </li>
+                </ul>
+                <img src="./img/04secetion-teacher-bottomline.png" class="mt-auto flex justify-center">
+            </div>
+        `;
+
+            cardContainer.appendChild(card);
+
+            // 用 requestAnimationFrame 啟動動畫
+            if (!isFirstRender) {
+                requestAnimationFrame(() => {
+                    card.classList.remove("opacity-40", "translate-x-10");
+                    card.classList.add("opacity-100", "translate-x-0");
+                });
+            }
+        });
+
+        isFirstRender = false; // 第一次跑完後設為 false
+    }
+
+
+    // 初始化
+    renderTabs();
+    document.querySelector('[data-group="course1"]').classList.add("active");
+    renderCards("course1");
+
+    // 課程亮點滑動卡片
+    const courseHighlights = [
+        {
+            title: "大歷史大管理",
+            desc: "以工作坊形式，帶領學員課題思考的系統學習。",
+            image: "./img/06section-img-01.png"
+        },
+        {
+            title: "會計實務個案教學",
+            desc: "分組進行個案學習，PwC講師進行教學。",
+            image: "./img/06section-img-02.png"
+        },
+        {
+            title: "建築美學深度教學",
+            desc: "由資深教授(建築師)羅時瑋帶領學員實境學習，編織建築及美學的殿堂。",
+            image: "./img/06section-img-03.png"
+        },
+        {
+            title: "創新思維與設計",
+            desc: "設計思維導入管理，提升創新實戰力。",
+            image: "./img/06section-img-01.png"
+        },
+        {
+            title: "策略模擬經營",
+            desc: "結合模擬平台進行策略實作演練。",
+            image: "./img/06section-img-02.png"
+        },
+        {
+            title: "跨域整合工作坊",
+            desc: "融合科技與人文視角的問題導向學習。",
+            image: "./img/06section-img-03.png"
+        }
+    ];
+
+    function renderHighlights() {
+        const container = document.getElementById("highlight-cards");
+        courseHighlights.forEach(item => {
+            const card = document.createElement("div");
+            card.className = " flex-shrink-0 max-w-[448px]";
+            card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}" class="rounded-3xl mb-12 w-full h-[472px] object-cover ">
+      <div class="font-bold text-center rounded-2xl max-w-[448px] py-4 bg-postegrey tracking-[0.15em] text-[30px] mb-5">${item.title}</div>
+      <p class="text-left text-[18px] tracking-[0.15em]">${item.desc}</p>
+    `;
+            container.appendChild(card);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", renderHighlights);
+
+</script>
