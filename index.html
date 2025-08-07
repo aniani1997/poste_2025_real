@@ -46,9 +46,11 @@
     </script>
     <style>
         .scale-container {
-            transform-origin: top left;
             width: 1920px;
-            /* 設計稿寬度 */
+            zoom: calc(100vw / 1920);
+            /* 以視窗寬度縮放 */
+            transform-origin: top left;
+            /* 預防萬一要用 transform */
         }
 
         a.group-btn::before {
@@ -450,16 +452,42 @@
         const wrapper = document.getElementById('scale-wrapper');
 
         const scaleRatio = window.innerWidth / baseWidth;
-        scaleContainer.style.transform = `scale(${scaleRatio})`;
-        scaleContainer.style.transformOrigin = 'top left';
+        scaleContainer.style.zoom = scaleRatio;
 
-        // 調整 wrapper 高度，**以視覺縮放後的實際高度為準**
-        const containerHeight = scaleContainer.getBoundingClientRect().height;
-        wrapper.style.height = `${containerHeight}px`;
+        // 取得縮放後高度
+        const height = scaleContainer.getBoundingClientRect().height;
+        wrapper.style.height = `${height}px`; // wrapper 高度要跟內容對齊
     }
 
     window.addEventListener('load', updateScale);
     window.addEventListener('resize', updateScale);
+
+    window.addEventListener('scroll', () => {
+        const scrollBottom = window.scrollY + window.innerHeight;
+        const docHeight = document.body.scrollHeight;
+
+        if (scrollBottom >= docHeight) {
+            console.log('已滑到底部');
+            // 可阻止繼續滑動、顯示 footer 遮罩等處理
+        }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+
+            if (target) {
+                const ratio = window.innerWidth / 1920;
+                const offset = target.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({
+                    top: offset * ratio,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
 
 
