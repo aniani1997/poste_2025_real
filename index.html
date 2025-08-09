@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=1920, initial-scale=1.0, maximum-scale=1.0">
     <title>東海大學超E課程第三期網站</title>
     <link rel="icon" href="/img/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -99,6 +99,27 @@
 </head>
 
 <body class="m-auto p-0 font-sans text-white max-w-[1920px]">
+    <!-- 固定右側垂直功能列 -->
+    <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
+        <!-- 固定欄logo -->
+        <img src="./img/00menu-logo.png" alt="logo" class="object-contain">
+
+        <!-- 四個社群icon -->
+        <div class="flex flex-col items-center gap-y-5">
+            <a href="#"><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain"></a>
+            <a href="https://www.facebook.com/Poste.thu.tw"><img src="./img/00menu-icon-fb.png" alt="fb"
+                    class="object-contain"></a>
+            <a href="https://www.youtube.com/@tisc1548"><img src="./img/00menu-icon-yt.png" alt="yt"
+                    class="object-contain"></a>
+            <a href="#"><img src="./img/00menu-icon-line.png" alt="line" class="object-contain"></a>
+        </div>
+
+        <!-- 白線 -->
+        <div class="w-px h-20 bg-white"></div>
+
+        <!-- 向下按鈕 -->
+        <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="animate-bounce mt-2 object-contain">
+    </div>
     <div id="scale-wrapper" class="overflow-x-hidden bg-[url('./img/bg-all.png')] bg-cover bg-center">
         <div class="scale-container h-full relative">
             <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
@@ -108,27 +129,7 @@
             <img src="./img/01bannar-cloud.png" alt="雲雲" class="absolute right-0 object-contain ">
             <!-- 教堂 -->
             <img src="./img/01bannar-church.png" alt="教堂" class="absolute z-30 right-0 top-[56px] object-contain ">
-            <!-- 固定右側垂直功能列 -->
-            <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
-                <!-- 固定欄logo -->
-                <img src="./img/00menu-logo.png" alt="logo" class="object-contain">
 
-                <!-- 四個社群icon -->
-                <div class="flex flex-col items-center gap-y-5">
-                    <a href="#"><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain"></a>
-                    <a href="https://www.facebook.com/Poste.thu.tw"><img src="./img/00menu-icon-fb.png" alt="fb"
-                            class="object-contain"></a>
-                    <a href="https://www.youtube.com/@tisc1548"><img src="./img/00menu-icon-yt.png" alt="yt"
-                            class="object-contain"></a>
-                    <a href="#"><img src="./img/00menu-icon-line.png" alt="line" class="object-contain"></a>
-                </div>
-
-                <!-- 白線 -->
-                <div class="w-px h-20 bg-white"></div>
-
-                <!-- 向下按鈕 -->
-                <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="animate-bounce mt-2 object-contain">
-            </div>
 
             <section class="relative">
                 <!-- 左上導覽列 -->
@@ -200,7 +201,7 @@
                     <!-- 左側：標題 -->
                     <div class="flex flex-col items-center font-bold z-20 gap-y-6 pt-8 mr-[132px]">
                         <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4 ">
-                        <div>
+                        <div class="flex flex-col items-center">
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">辦</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">學</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">特</h2>
@@ -282,7 +283,7 @@
                     <!-- 左側：標題 -->
                     <div class="flex flex-col items-center font-bold z-20 gap-y-6 mt-[100px]">
                         <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4 ">
-                        <div>
+                        <div class="flex flex-col items-center">
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">學</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">程</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">介</h2>
@@ -340,7 +341,7 @@
                     <!-- 左側：標題區 -->
                     <div class="flex flex-col items-center font-bold gap-y-6">
                         <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4">
-                        <div>
+                        <div class="flex flex-col items-center">
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">師</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">資</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">介</h2>
@@ -359,7 +360,7 @@
                         </div>
 
                         <!-- 卡片與標語 -->
-                        <div class="flex flex-col">
+                        <div class="flex flex-col items-end">
                             <div class="font-bold tracking-[0.15em] text-[30px] text-right mb-[180px]">
                                 打造決策力 × 談判力 × 領導力的頂尖講堂！
                             </div>
@@ -394,7 +395,7 @@
                     <!-- 左側：標題區 -->
                     <div class="flex flex-col items-center font-bold gap-y-6">
                         <img src="./img/02secetion-icon-bigger.png" alt="區塊標題icon" class="mb-4">
-                        <div>
+                        <div class="flex flex-col items-center">
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">課</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">程</h2>
                             <h2 class="text-[32px] leading-none writing-vertical tracking-widest mb-2">亮</h2>
@@ -444,63 +445,63 @@
 
         (function () {
             const BASE = 1920;
-            let scaleRatio = 1;
-            let rafId = 0;
+            const sc = document.querySelector('.scale-container');
+            const wrap = document.getElementById('scale-wrapper');
+            if (!sc || !wrap) return;
+
+            function vw() {
+                return (window.visualViewport && window.visualViewport.width) || window.innerWidth;
+            }
 
             function applyScale() {
-                const sc = document.querySelector('.scale-container');
-                const wrap = document.getElementById('scale-wrapper');
-                if (!sc || !wrap) return;
+                // 1920↑ 不放大，1920↓ 照比例縮小
+                const r = Math.min(vw() / BASE, 1);
 
-                // 寬度小於 1920 才縮；大於等於就用 1，避免放大糊
-                scaleRatio = Math.min(window.innerWidth / BASE, 1);
+                // 只用 transform（iOS OK）
+                sc.style.transform = `scale(${r})`;
+                sc.style.transformOrigin = 'top left';
 
-                sc.style.transform = `scale(${scaleRatio})`;
-                sc.style.webkitTransform = `scale(${scaleRatio})`; // iOS Safari
+                // 用「未縮放高度 × 比例」計算縮放後高度，避免底部空白
+                const unscaledH = sc.scrollHeight;            // 原始高度（未縮放）
+                const scaledH = Math.ceil(unscaledH * r);   // 縮放後高度（實際視覺高度）
+                wrap.style.height = scaledH + 'px';
 
-                // 用「未縮放高度 * 比例」計算縮放後高度，避免底部空白
-                const unscaledHeight = sc.scrollHeight;     // 原始高度（不受 transform 影響）
-                const scaledHeight = Math.ceil(unscaledHeight * scaleRatio);
-                wrap.style.height = scaledHeight + 'px';
+                // 這兩行可避免某些瀏覽器在極端長頁時出現額外空白
+                document.documentElement.style.height = scaledH + 'px';
+                document.body.style.height = scaledH + 'px';
             }
 
-            // 初始與 resize（用 rAF 節流，iOS Safari 比較穩）
-            function onResize() {
-                cancelAnimationFrame(rafId);
-                rafId = requestAnimationFrame(applyScale);
-            }
-
+            // 首次與視口變動
             window.addEventListener('load', applyScale, { passive: true });
-            window.addEventListener('resize', onResize, { passive: true });
+            window.addEventListener('resize', applyScale, { passive: true });
+            if (window.visualViewport) {
+                visualViewport.addEventListener('resize', applyScale, { passive: true });
+                visualViewport.addEventListener('scroll', applyScale, { passive: true }); // iOS 會改變 visual viewport
+            }
 
-            // 內容動態變化（圖片載入、卡片渲染等）時，重新計算高度
+            // 圖片載入後重算（避免圖片晚到造成高度變化）
+            Array.from(document.images).forEach(img => {
+                if (img.complete) return;
+                img.addEventListener('load', applyScale, { once: true });
+                img.addEventListener('error', applyScale, { once: true });
+            });
+
+            // 內容動態變更（你有動態插卡片），就再算一次
             const ro = new ResizeObserver(applyScale);
-            ro.observe(document.querySelector('.scale-container'));
+            ro.observe(sc);
 
-            // 錨點平滑跳轉（乘上比例，避免偏移）
+            // 錨點：交給瀏覽器自己算即可
             document.querySelectorAll('a[href^="#"]').forEach(a => {
                 a.addEventListener('click', e => {
                     const href = a.getAttribute('href');
                     if (!href || href === '#') return;
-                    const id = href.slice(1);
-                    const el = document.getElementById(id);
+                    const el = document.getElementById(href.slice(1));
                     if (!el) return;
-
                     e.preventDefault();
-                    // el 的「原始」距頂距離 * scaleRatio = 視覺上的目標 scrollTop
-                    const targetY = Math.round(el.offsetTop * scaleRatio);
-                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
-
-            // 圖片載入完成後再補算一次（保險）
-            window.addEventListener('pageshow', applyScale);
-            document.addEventListener('DOMContentLoaded', () => {
-                // 如果你有 renderCards / renderHighlights，呼叫後記得：
-                requestAnimationFrame(applyScale);
-            });
         })();
-
 
 
     const text = "厚植人文底蘊/邁向卓越領導";
