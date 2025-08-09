@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>東海大學超E課程第三期網站</title>
     <link rel="icon" href="/img/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -45,24 +45,10 @@
         }
     </script>
     <style>
-        /* .scale-container {
-            width: 1920px;
-            zoom: calc(100vw / 1920);
-            /* 以視窗寬度縮放 */
-        transform-origin: top left;
-        /* 預防萬一要用 transform */
-        }
-
-        */
-
         /* CSS 部分 */
         .scale-container {
-            transform: scale(0.5);
-            /* 這裡會等比例縮小畫面 */
+            width: 1920px;
             transform-origin: top left;
-            width: 200%;
-            /* scale 0.5 的話要設定 2 倍寬，才不會被裁切 */
-            height: 200%;
         }
 
         a.group-btn::before {
@@ -112,11 +98,10 @@
     </style>
 </head>
 
-<body class="m-0 p-0 h-full font-sans text-white ">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <div id="scale-wrapper" class="">
-        <div class="scale-container relative w-full bg-[url('./img/bg-all.png')] bg-cover bg-center overflow-hidden">
+<body class="m-auto p-0 h-full font-sans text-white max-w-[1920px]">
+    
+    <div id="scale-wrapper" class="relative bg-[url('./img/bg-all.png')] bg-cover bg-center overflow-hidden">
+        <div class="scale-container ">
             <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
             <img src="./img/bg-02.png" class="absolute z-10 top-[2160px] left-0" />
 
@@ -125,8 +110,8 @@
             <!-- 教堂 -->
             <img src="./img/01bannar-church.png" alt="教堂" class="absolute z-30 right-0 top-[56px] object-contain ">
 
-            <!-- 固定右側垂直功能列 -->
-            <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
+             <!-- 固定右側垂直功能列 -->
+             <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
                 <!-- 固定欄logo -->
                 <img src="./img/00menu-logo.png" alt="logo" class="object-contain">
 
@@ -459,55 +444,45 @@
 
 <script>
 
-    // //  縮放
-    // function updateZoomAndScrollLimit() {
-    //     const baseWidth = 1920;
-    //     const scaleContainer = document.querySelector('.scale-container');
-    //     const scaleWrapper = document.getElementById('scale-wrapper');
-    //     const body = document.body;
+    // function applyScale() {
+    //     const base = 1920;
+    //     const sc = document.querySelector('.scale-container');
+    //     const wrap = document.getElementById('scale-wrapper');
 
-    //     const ratio = window.innerWidth / baseWidth;
+    //     if (!sc || !wrap) return;
 
-    //     // 套用 zoom
-    //     scaleContainer.style.zoom = ratio;
+    //     // 1920↑ 不放大；1920↓ 依寬度縮小
+    //     const r = Math.min(window.innerWidth / base, 1);
+    //     sc.style.transform = `scale(${r})`;
+    //     sc.style.transformOrigin = 'top left';
 
-    //     // 計算縮放後的高度
-    //     const scaledHeight = scaleContainer.getBoundingClientRect().height;
-
-    //     // 設定 wrapper 與 body 的高度
-    //     scaleWrapper.style.height = `${scaledHeight}px`;
-    //     body.style.height = `${scaledHeight}px`;
+    //     // 以縮放後實際高度填回 wrapper，避免底部空白
+    //     const rect = sc.getBoundingClientRect();
+    //     wrap.style.height = `${Math.ceil(rect.height)}px`;
     // }
+    // window.addEventListener('load', applyScale, { passive: true });
+    // window.addEventListener('resize', applyScale, { passive: true });
 
-    // window.addEventListener('load', updateZoomAndScrollLimit);
-    // window.addEventListener('resize', updateZoomAndScrollLimit);
-
-    // window.addEventListener('scroll', () => {
-    //     const scrollBottom = window.scrollY + window.innerHeight;
-    //     const docHeight = document.body.scrollHeight;
-
-    //     if (scrollBottom >= docHeight) {
-    //         window.scrollTo(0, docHeight - window.innerHeight); // 停止滾動
-    //         console.log('已滑到底部');
-    //     }
-    // });
-
-    // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    //     anchor.addEventListener('click', function (e) {
+    // /* 錨點平滑捲動（讓瀏覽器自己算，避免你再乘比例出錯） */
+    // document.querySelectorAll('a[href^="#"]').forEach(a => {
+    //     a.addEventListener('click', e => {
+    //         const href = a.getAttribute('href');
+    //         if (href === '#') return;  // 忽略純 # 的
     //         e.preventDefault();
-    //         const targetId = this.getAttribute('href').substring(1);
-    //         const target = document.getElementById(targetId);
-
-    //         if (target) {
-    //             const ratio = window.innerWidth / 1920;
-    //             const offset = target.getBoundingClientRect().top + window.scrollY;
-    //             window.scrollTo({
-    //                 top: offset * ratio,
-    //                 behavior: 'smooth'
-    //             });
-    //         }
+    //         const id = href.slice(1);
+    //         const el = document.getElementById(id);
+    //         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     //     });
     // });
+
+    // /* 監聽內容高度變化：動態 append 卡片/圖片完成後自動重算 */
+    // const ro = new ResizeObserver(() => applyScale());
+    // ro.observe(document.querySelector('.scale-container'));
+
+    // /* 你的 renderCards / renderHighlights 完成後，保險再叫一次 */
+    // function afterDynamicRender() {
+    //     requestAnimationFrame(applyScale);
+    // }
 
     function updateZoomAndHeights() {
         const baseWidth = 1920;
@@ -560,7 +535,8 @@
         // 例：renderCards()、renderHighlights() 之後
         requestAnimationFrame(updateZoomAndHeights);
     }
-   
+
+
     const text = "厚植人文底蘊/邁向卓越領導";
     const container = document.getElementById("char-line");
     const chars = [...text];
@@ -833,6 +809,3 @@
     document.addEventListener("DOMContentLoaded", renderHighlights);
 
 </script>
-
-
-
