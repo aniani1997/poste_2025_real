@@ -98,10 +98,9 @@
     </style>
 </head>
 
-<body class="m-auto p-0 h-full font-sans text-white max-w-[1920px]">
-    
-    <div id="scale-wrapper" class="relative bg-[url('./img/bg-all.png')] bg-cover bg-center overflow-hidden">
-        <div class="scale-container ">
+<body class="m-auto p-0 font-sans text-white max-w-[1920px]">
+    <div id="scale-wrapper" class="overflow-x-hidden bg-[url('./img/bg-all.png')] bg-cover bg-center">
+        <div class="scale-container h-full relative">
             <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
             <img src="./img/bg-02.png" class="absolute z-10 top-[2160px] left-0" />
 
@@ -109,9 +108,8 @@
             <img src="./img/01bannar-cloud.png" alt="雲雲" class="absolute right-0 object-contain ">
             <!-- 教堂 -->
             <img src="./img/01bannar-church.png" alt="教堂" class="absolute z-30 right-0 top-[56px] object-contain ">
-
-             <!-- 固定右側垂直功能列 -->
-             <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
+            <!-- 固定右側垂直功能列 -->
+            <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6">
                 <!-- 固定欄logo -->
                 <img src="./img/00menu-logo.png" alt="logo" class="object-contain">
 
@@ -431,7 +429,7 @@
             </section>
             <!-- 左底色塊 -->
             <!-- 色塊包 footer -->
-            <div class="relative w-full h-full">
+            <div class="relative w-full ">
                 <img src="./img/bg-03.png" alt="紫色色塊03" class="absolute z-10 w-full bottom-0 left-0">
 
                 <footer class="relative z-20 flex justify-center w-full">
@@ -444,97 +442,65 @@
 
 <script>
 
-    // function applyScale() {
-    //     const base = 1920;
-    //     const sc = document.querySelector('.scale-container');
-    //     const wrap = document.getElementById('scale-wrapper');
+        (function () {
+            const BASE = 1920;
+            let scaleRatio = 1;
+            let rafId = 0;
 
-    //     if (!sc || !wrap) return;
+            function applyScale() {
+                const sc = document.querySelector('.scale-container');
+                const wrap = document.getElementById('scale-wrapper');
+                if (!sc || !wrap) return;
 
-    //     // 1920↑ 不放大；1920↓ 依寬度縮小
-    //     const r = Math.min(window.innerWidth / base, 1);
-    //     sc.style.transform = `scale(${r})`;
-    //     sc.style.transformOrigin = 'top left';
+                // 寬度小於 1920 才縮；大於等於就用 1，避免放大糊
+                scaleRatio = Math.min(window.innerWidth / BASE, 1);
 
-    //     // 以縮放後實際高度填回 wrapper，避免底部空白
-    //     const rect = sc.getBoundingClientRect();
-    //     wrap.style.height = `${Math.ceil(rect.height)}px`;
-    // }
-    // window.addEventListener('load', applyScale, { passive: true });
-    // window.addEventListener('resize', applyScale, { passive: true });
+                sc.style.transform = `scale(${scaleRatio})`;
+                sc.style.webkitTransform = `scale(${scaleRatio})`; // iOS Safari
 
-    // /* 錨點平滑捲動（讓瀏覽器自己算，避免你再乘比例出錯） */
-    // document.querySelectorAll('a[href^="#"]').forEach(a => {
-    //     a.addEventListener('click', e => {
-    //         const href = a.getAttribute('href');
-    //         if (href === '#') return;  // 忽略純 # 的
-    //         e.preventDefault();
-    //         const id = href.slice(1);
-    //         const el = document.getElementById(id);
-    //         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    //     });
-    // });
+                // 用「未縮放高度 * 比例」計算縮放後高度，避免底部空白
+                const unscaledHeight = sc.scrollHeight;     // 原始高度（不受 transform 影響）
+                const scaledHeight = Math.ceil(unscaledHeight * scaleRatio);
+                wrap.style.height = scaledHeight + 'px';
+            }
 
-    // /* 監聽內容高度變化：動態 append 卡片/圖片完成後自動重算 */
-    // const ro = new ResizeObserver(() => applyScale());
-    // ro.observe(document.querySelector('.scale-container'));
+            // 初始與 resize（用 rAF 節流，iOS Safari 比較穩）
+            function onResize() {
+                cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(applyScale);
+            }
 
-    // /* 你的 renderCards / renderHighlights 完成後，保險再叫一次 */
-    // function afterDynamicRender() {
-    //     requestAnimationFrame(applyScale);
-    // }
+            window.addEventListener('load', applyScale, { passive: true });
+            window.addEventListener('resize', onResize, { passive: true });
 
-    function updateZoomAndHeights() {
-        const baseWidth = 1920;
-        const wrapper = document.getElementById('scale-wrapper');
-        const container = document.querySelector('.scale-container');
-        const html = document.documentElement;
-        const body = document.body;
+            // 內容動態變化（圖片載入、卡片渲染等）時，重新計算高度
+            const ro = new ResizeObserver(applyScale);
+            ro.observe(document.querySelector('.scale-container'));
 
-        const ratio = window.innerWidth / baseWidth;
+            // 錨點平滑跳轉（乘上比例，避免偏移）
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const href = a.getAttribute('href');
+                    if (!href || href === '#') return;
+                    const id = href.slice(1);
+                    const el = document.getElementById(id);
+                    if (!el) return;
 
-        // 視覺縮放：優先用 zoom，Firefox/iOS 用 transform 備援（避免雙重縮放）
-        if (CSS.supports('zoom', 1)) {
-            container.style.zoom = ratio;
-            container.style.transform = ''; // 確保沒同時套 transform
-        } else {
-            container.style.transformOrigin = 'top left';
-            container.style.transform = `scale(${ratio})`;
-        }
+                    e.preventDefault();
+                    // el 的「原始」距頂距離 * scaleRatio = 視覺上的目標 scrollTop
+                    const targetY = Math.round(el.offsetTop * scaleRatio);
+                    window.scrollTo({ top: targetY, behavior: 'smooth' });
+                });
+            });
 
-        // 用「未縮放高度 × 比例」算出縮放後高度（跨瀏覽器最穩）
-        const unscaledHeight = container.scrollHeight; // 未縮放的原始高度
-        const scaledHeight = Math.ceil(unscaledHeight * ratio);
+            // 圖片載入完成後再補算一次（保險）
+            window.addEventListener('pageshow', applyScale);
+            document.addEventListener('DOMContentLoaded', () => {
+                // 如果你有 renderCards / renderHighlights，呼叫後記得：
+                requestAnimationFrame(applyScale);
+            });
+        })();
 
-        // 同步 wrapper / html / body 高度，避免多出空白
-        wrapper.style.height = `${scaledHeight}px`;
-        html.style.height = `${scaledHeight}px`;
-        body.style.height = `${scaledHeight}px`;
-    }
-
-    // 初始 & resize 時執行
-    window.addEventListener('load', updateZoomAndHeights);
-    window.addEventListener('resize', updateZoomAndHeights);
-
-    // 你的 anchor 平滑捲動（加上比例修正）
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', (e) => {
-            e.preventDefault();
-            const id = a.getAttribute('href').slice(1);
-            const target = document.getElementById(id);
-            if (!target) return;
-
-            const ratio = window.innerWidth / 1920;
-            const offset = target.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top: offset * ratio, behavior: 'smooth' });
-        });
-    });
-
-    // 每次動態產生內容後記得呼叫（超重要！）
-    function afterDynamicRender() {
-        // 例：renderCards()、renderHighlights() 之後
-        requestAnimationFrame(updateZoomAndHeights);
-    }
 
 
     const text = "厚植人文底蘊/邁向卓越領導";
