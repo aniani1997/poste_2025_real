@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1920, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東海大學超E課程第三期網站</title>
     <link rel="icon" href="/img/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -49,12 +49,6 @@
         .scale-container {
             width: 1920px;
             transform-origin: top left;
-        }
-
-        .scale-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
         }
 
 
@@ -107,13 +101,12 @@
 
 <body class="m-auto p-0 font-sans text-white max-w-[1920px] overflow-x-hidden">
     <!-- 固定右側垂直功能列 -->
-    <div id="fixed-rail" class="fixed-rail fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
+    <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
         <!-- 固定欄logo -->
-        <!-- 固定欄logo -->
-        <img src="./img/00menu-logo.png" alt="logo" class="rail-logo object-contain max-[768px]:w-[30px]">
+        <img src="./img/00menu-logo.png" alt="logo" class="object-contain max-[768px]:w-[30px]">
 
         <!-- 四個社群icon -->
-        <div class="rail-icons flex flex-col items-center gap-y-5 max-[768px]:gap-y-2">
+        <div class="flex flex-col items-center gap-y-5 max-[768px]:gap-y-2">
             <a href="#"><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain max-[768px]:w-[12px]"></a>
             <a href="https://www.facebook.com/Poste.thu.tw"><img src="./img/00menu-icon-fb.png" alt="fb"
                     class="object-contain max-[768px]:w-[12px]"></a>
@@ -123,13 +116,14 @@
         </div>
 
         <!-- 白線 -->
-        <div class="rail-line w-px h-20 max-[768px]:h-5 bg-white"></div>
+        <div class="w-px h-20 max-[768px]:h-5 bg-white"></div>
 
         <!-- 向下按鈕 -->
-        <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="rail-down animate-bounce mt-2 object-contain max-[768px]:w-[18px]">
+        <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="animate-bounce mt-2 object-contain max-[768px]:w-[18px]">
     </div>
+
     <div id="scale-wrapper" class="overflow-x-hidden bg-[url('./img/bg-all.png')] bg-cover bg-center">
-        <div class="scale-container h-full relative">
+        <div class="scale-container h-full relative ">
             <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
             <img src="./img/bg-02.png" class="absolute z-10 top-[2160px] left-0" />
 
