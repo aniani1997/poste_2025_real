@@ -51,6 +51,15 @@
             transform-origin: top left;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+        }
 
         a.group-btn::before {
             content: '';
@@ -101,29 +110,33 @@
 
 <body class="m-auto p-0 font-sans text-white max-w-[1920px] overflow-x-hidden">
     <!-- 固定右側垂直功能列 -->
-    <div class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
+    <div
+        class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
         <!-- 固定欄logo -->
-        <img src="./img/00menu-logo.png" alt="logo" class="object-contain max-[768px]:w-[30px]">
+        <img src="./img/00menu-logo.png" alt="logo" class="object-contain max-[768px]:w-[24px]">
 
         <!-- 四個社群icon -->
         <div class="flex flex-col items-center gap-y-5 max-[768px]:gap-y-2">
-            <a href="#"><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain max-[768px]:w-[12px]"></a>
-            <a href="https://www.facebook.com/Poste.thu.tw"><img src="./img/00menu-icon-fb.png" alt="fb"
+            <a href=""><img src="./img/00menu-icon-top.png" alt="gotop"
                     class="object-contain max-[768px]:w-[12px]"></a>
-            <a href="https://www.youtube.com/@tisc1548"><img src="./img/00menu-icon-yt.png" alt="yt"
+            <a href="https://www.facebook.com/Poste.thu.tw/" target="_blank"><img src="./img/00menu-icon-fb.png" alt="fb"
                     class="object-contain max-[768px]:w-[12px]"></a>
-            <a href="#"><img src="./img/00menu-icon-line.png" alt="line" class="object-contain max-[768px]:w-[12px]"></a>
+            <a href="https://www.youtube.com/channel/UC2nMCxw_IyyB4-K171az0gA" target="_blank"><img src="./img/00menu-icon-yt.png"
+                    alt="yt" class="object-contain max-[768px]:w-[12px]"></a>
+            <a href="https://lin.ee/RSnysnG" target="_blank"><img src="./img/00menu-icon-line.png" alt="line"
+                    class="object-contain max-[768px]:w-[12px]"></a>
         </div>
 
         <!-- 白線 -->
         <div class="w-px h-20 max-[768px]:h-5 bg-white"></div>
 
         <!-- 向下按鈕 -->
-        <img src="./img/00menu-icon-down.png" alt="向下按鈕" class="animate-bounce mt-2 object-contain max-[768px]:w-[18px]">
+        <img src="./img/00menu-icon-down.png" alt="向下按鈕"
+            class="animate-bounce mt-2 object-contain max-[768px]:w-[18px]">
     </div>
 
     <div id="scale-wrapper" class="overflow-x-hidden bg-[url('./img/bg-all.png')] bg-cover bg-center">
-        <div class="scale-container h-full relative ">
+        <div class="scale-container h-full relative">
             <img src="./img/bg-01.png" class="absolute z-10 top-0 left-0" />
             <img src="./img/bg-02.png" class="absolute z-10 top-[2160px] left-0" />
 
@@ -189,7 +202,7 @@
                         class="grid grid-flow-col w-full text-[26px] leading-none text-center mt-6 mb-14">
                     </div>
 
-                    <a href="#" class="relative inline-flex items-center gap-x-2 ml-2 px-7 py-6 rounded-3xl font-semibold text-[24px] text-white
+                    <a href="https://forms.gle/htwa5ugPoiUQTk3N6" target="_blank" class="relative inline-flex items-center gap-x-2 ml-2 px-7 py-6 rounded-3xl font-semibold text-[24px] text-white
                    bg-postegrey group-btn overflow-hidden shadow-[3px_4px_11.6px_0px_rgba(255,255,255,0.34)]
                    transition-all duration-500 ease-in-out">
                         <span class="relative z-10">課 程 報 名</span>
@@ -422,7 +435,7 @@
                 </section>
                 <!-- 報名按鈕 -->
                 <div class="mt-[92px] flex justify-center w-full pb-[96px]">
-                    <a href="#" class="relative inline-flex items-center justify-center gap-x-4 ml-2 px-[72px] py-6 rounded-3xl font-semibold text-[24px] text-white
+                    <a href="https://forms.gle/htwa5ugPoiUQTk3N6" target="_blank" class="relative inline-flex items-center justify-center gap-x-4 ml-2 px-[72px] py-6 rounded-3xl font-semibold text-[24px] text-white
                    bg-postegrey group-btn overflow-hidden shadow-[3px_4px_11.6px_0px_rgba(255,255,255,0.34)]
                    transition-all duration-500 ease-in-out z-20">
                         <span class="relative z-20">課 程 報 名</span>
@@ -492,17 +505,26 @@
             const ro = new ResizeObserver(applyScale);
             ro.observe(sc);
 
-            // 錨點：交給瀏覽器自己算即可
-            document.querySelectorAll('a[href^="#"]').forEach(a => {
-                a.addEventListener('click', e => {
-                    const href = a.getAttribute('href');
-                    if (!href || href === '#') return;
-                    const el = document.getElementById(href.slice(1));
-                    if (!el) return;
+
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const rect = target.getBoundingClientRect(); // 取得目標元素相對於視窗的位置
+                        const scrollTop = window.scrollY || document.documentElement.scrollTop; // 當前滾動位置
+                        const adjustedTop = rect.top + scrollTop; // 計算目標元素的實際滾動位置
+
+                        window.scrollTo({
+                            top: adjustedTop,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
+
+
         })();
 
 
