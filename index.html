@@ -528,15 +528,22 @@
 
     function adjustSidebarPosition() {
         const sidebar = document.querySelector('.sidebar');
-        const extraSpace = (window.innerWidth - 1920) / 2;
+        const windowWidth = window.innerWidth;
 
-        if (window.innerWidth > 1920) {
-            sidebar.style.right = `${extraSpace + 56}px`;
+        if (windowWidth <= 768) {
+            // 視窗寬度小於等於 768px
+            sidebar.style.right = '16px'; // Tailwind 的 `right-4` 對應 1rem
+        } else if (windowWidth <= 1280) {
+            // 視窗寬度小於等於 1280px
+            sidebar.style.right = '40px'; // Tailwind 的 `right-10` 對應 2.5rem
         } else {
-            sidebar.style.right = '56px';
+            // 視窗寬度大於 1280px
+            const extraSpace = (windowWidth - 1920) / 2;
+            sidebar.style.right = `${Math.max(extraSpace + 56, 56)}px`; // 動態計算，最小值為 14px
         }
     }
 
+    // 在視窗大小改變時調整位置
     window.addEventListener('resize', adjustSidebarPosition);
     window.addEventListener('load', adjustSidebarPosition);
 
