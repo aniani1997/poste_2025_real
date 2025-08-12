@@ -111,18 +111,17 @@
 <body class="m-auto p-0 font-sans text-white max-w-[1920px] overflow-x-hidden">
     <!-- 固定右側垂直功能列 -->
     <div
-        class="fixed right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
+        class="fixed sidebar right-14 top-[200px] z-50 flex flex-col items-center gap-y-6 max-[768px]:gap-y-3 max-[1280px]:top-[120px] max-[768px]:top-[50px] max-[1280px]:right-10 max-[768px]:right-4">
         <!-- 固定欄logo -->
         <img src="./img/00menu-logo.png" alt="logo" class="object-contain max-[768px]:w-[24px]">
 
         <!-- 四個社群icon -->
         <div class="flex flex-col items-center gap-y-5 max-[768px]:gap-y-2">
-            <a href=""><img src="./img/00menu-icon-top.png" alt="gotop"
-                    class="object-contain max-[768px]:w-[12px]"></a>
-            <a href="https://www.facebook.com/Poste.thu.tw/" target="_blank"><img src="./img/00menu-icon-fb.png" alt="fb"
-                    class="object-contain max-[768px]:w-[12px]"></a>
-            <a href="https://www.youtube.com/channel/UC2nMCxw_IyyB4-K171az0gA" target="_blank"><img src="./img/00menu-icon-yt.png"
-                    alt="yt" class="object-contain max-[768px]:w-[12px]"></a>
+            <a href=""><img src="./img/00menu-icon-top.png" alt="gotop" class="object-contain max-[768px]:w-[12px]"></a>
+            <a href="https://www.facebook.com/Poste.thu.tw/" target="_blank"><img src="./img/00menu-icon-fb.png"
+                    alt="fb" class="object-contain max-[768px]:w-[12px]"></a>
+            <a href="https://www.youtube.com/channel/UC2nMCxw_IyyB4-K171az0gA" target="_blank"><img
+                    src="./img/00menu-icon-yt.png" alt="yt" class="object-contain max-[768px]:w-[12px]"></a>
             <a href="https://lin.ee/RSnysnG" target="_blank"><img src="./img/00menu-icon-line.png" alt="line"
                     class="object-contain max-[768px]:w-[12px]"></a>
         </div>
@@ -526,6 +525,20 @@
 
 
         })();
+
+    function adjustSidebarPosition() {
+        const sidebar = document.querySelector('.sidebar');
+        const extraSpace = (window.innerWidth - 1920) / 2;
+
+        if (window.innerWidth > 1920) {
+            sidebar.style.right = `${extraSpace + 56}px`;
+        } else {
+            sidebar.style.right = '56px';
+        }
+    }
+
+    window.addEventListener('resize', adjustSidebarPosition);
+    window.addEventListener('load', adjustSidebarPosition);
 
 
     const text = "厚植人文底蘊/邁向卓越領導";
